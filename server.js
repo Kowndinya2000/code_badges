@@ -5,11 +5,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json())
 
-app.get("https://nameless-earth-77601.herokuapp.com", function (req, res, next) {
+app.get("/", function (req, res, next) {
     res.render("index.ejs", { message: "" });
 });
 
-app.post("https://nameless-earth-77601.herokuapp.com/act", function (req, res, next) {
+app.post("/act", function (req, res, next) {
     console.log(req.body);
     var str = req.body.link;
     const request = require('request');
