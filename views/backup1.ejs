@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hey F2</title>
+</head>
+
+<body>
+    <script>
+      
+class Queue 
+{ 
+    constructor() 
+    { 
+        var it = 0;
+        this.items = []; 
+    } 
+    push(element) 
+    { 
+    this.items.push(element); 
+    } 
+    
+    pop() 
+    { 
+    if(this.isEmpty()) 
+        return "Underflow"; 
+    this.items.shift(); 
+    } 
+    
+    front() 
+    { 
+    if(this.isEmpty()) 
+        return "No elements in Queue"; 
+    return this.items[it]; 
+    } 
+
+    isEmpty() 
+    {  
+    return (this.items.length == 0); 
+    } 
+
+    size()
+    {
+    return this.items.length;
+    }
+    printQueue() 
+    { 
+    for(var i = 0; i < this.items.length; i++) 
+        console.log(this.items[i]);  
+    } 
+} 
+
+  var queue = new Queue(); 
+  //var count = 0;
+
+</script>
+
+    <form action="http://localhost:5000/act" method="post" name="myForm">
+        <input type="text" name="gitlink" id="git">
+    </form>
+   
+    <script>
+        function loadDoc(str1) {
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              //console.log(this);
+              //document.getElementById("code").innerHTML = JSON.parse(this.responseText).message;
+              var doop = []; 
+              doop = JSON.parse(this.responseText).message;
+              var i;
+              for(i=0;i<doop.length;i++)
+              {
+                queue.push(doop[i]);
+              //  console.log(doop[i]);
+              }
+              queue.printQueue();
+            }
+          };
+          xhttp.open("POST", "http://localhost:5000/act", true);
+          xhttp.setRequestHeader('Content-type', "application/x-www-form-urlencoded")
+          //var str = document.getElementById("git").value;
+          var str = str1;
+          console.log(str);
+          xhttp.send('link='+str);
+        }
+        </script>
+
+    <script>
+      function callDoc() 
+      {
+        var str = document.getElementById("git").value;
+        loadDoc(str);
+        console.log(1);
+        queue.printQueue();
+      }
+    </script>
+
+        <button onclick="callDoc()">OK</button>
+        <p>Code Comes Here<br/><br/>--------------------<br/><br/></p>
+        <p id="code"></p>
+        
+</body>
+
+</html>
